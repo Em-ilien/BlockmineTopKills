@@ -1,0 +1,11 @@
+msg:
+  classement:
+    title: "§7§m        §6§lTOP 10 KILLS§7§m        "
+    line: "§a#%rank% §r§b%username% §7- §6%amount_kills% kills (Niv.%level%)" #Placeholders: %rank% ; %username% ; %amount_kills% ; %level%
+  tchat:
+    format: "[Niv.%level%] %rest%" #Placeholders: %level% ; %rest%
+
+int:
+  level:
+    limit: 100
+    ratio: 25
