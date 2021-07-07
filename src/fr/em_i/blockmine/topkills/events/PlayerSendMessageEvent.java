@@ -26,16 +26,16 @@ public class PlayerSendMessageEvent implements Listener {
 		final String worldName = p.getWorld().getName();
 		final String uuidStr = p.getUniqueId().toString();
 		
-		final FileConfiguration classement = main.getClassementYamlOf(worldName);
+		final FileConfiguration ranking = main.getRankingYamlOf(worldName);
 		
-		if (classement == null)
+		if (ranking == null)
 			return;
 		
 		final FileConfiguration config = main.getConfigOf(worldName);
 		
 		int level = 0;
-		if (classement.contains("kills." + uuidStr)) 
-			level = classement.getInt("kills." + uuidStr);
+		if (ranking.contains("kills." + uuidStr)) 
+			level = ranking.getInt("kills." + uuidStr);
 		
 		level = level/config.getInt("int.level.ratio");
 		if (level >= config.getInt("int.level.limit"))

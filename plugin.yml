@@ -1,6 +1,6 @@
 name: BlockmineTopKills
 version: 0
-author: Em_i
+author: Em_i <emilien@emxiocle.fr>
 main: fr.em_i.blockmine.topkills.Main
 commands:
   classement:

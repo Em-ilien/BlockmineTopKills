@@ -31,21 +31,21 @@ public class PlayerKillEvent implements Listener {
 		final Player p = event.getEntity().getKiller();
 		final String uuidStr = p.getUniqueId().toString();
 		
-		final File classementFile = main.getClassementFileOf(p.getWorld().getName());
+		final File rankingFile = main.getRankingFileOf(p.getWorld().getName());
 		
-		if (classementFile == null)
+		if (rankingFile == null)
 			return;
 		
-		final FileConfiguration classement = main.getClassementYamlOf(classementFile);
+		final FileConfiguration ranking = main.getRankingYamlOf(rankingFile);
 
-		if (classement.contains("kills." + uuidStr)) {
-			classement.set("kills." + uuidStr, classement.getInt("kills." + uuidStr) + 1);
+		if (ranking.contains("kills." + uuidStr)) {
+			ranking.set("kills." + uuidStr, ranking.getInt("kills." + uuidStr) + 1);
 		} else {
-			classement.set("kills." + uuidStr, 1);
+			ranking.set("kills." + uuidStr, 1);
 		}
 		
 		try {
-			classement.save(classementFile);
+			ranking.save(rankingFile);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

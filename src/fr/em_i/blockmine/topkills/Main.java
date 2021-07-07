@@ -11,7 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.em_i.blockmine.topkills.cmd.Classement;
+import fr.em_i.blockmine.topkills.cmd.Ranking;
 import fr.em_i.blockmine.topkills.events.PlayerKillEvent;
 import fr.em_i.blockmine.topkills.events.PlayerSendMessageEvent;
 
@@ -23,11 +23,11 @@ public class Main extends JavaPlugin {
 		
 		getServer().getPluginManager().registerEvents(new PlayerKillEvent(this), this);
 		getServer().getPluginManager().registerEvents(new PlayerSendMessageEvent(this), this);
-		getCommand("classement").setExecutor(new Classement(this));
+		getCommand("classement").setExecutor(new Ranking(this));
 
 		Path path = Paths.get(getDataFolder().getPath() + "/Worlds");
 		File fileConfig = new File(getDataFolder(), "Worlds/world/config.yml");
-		File fileClassement = new File(getDataFolder(), "Worlds/world/classement.yml");
+		File fileRanking = new File(getDataFolder(), "Worlds/world/ranking.yml");
 		
 		if (Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
 			try {
@@ -37,18 +37,19 @@ public class Main extends JavaPlugin {
 				fileConfig.createNewFile();
 				YamlConfiguration config = YamlConfiguration.loadConfiguration(fileConfig);
 
-				config.set("msg.classement.title", "§7§m        §6§lTOP 10 KILLS§7§m        ");
-				config.set("msg.classement.line", "§a#%rank% §r§b%username% §7- §6%amount_kills% kills (Niv.%level%)");
+				config.set("msg.ranking.title", "§7§m        §6§lTOP 10 KILLS§7§m        ");
+				config.set("msg.ranking.line", "§a#%rank% §r§b%username% §7- §6%amount_kills% kills (Niv.%level%)");
 				config.set("msg.tchat.format", "[Niv.%level%] %rest%");
+				config.set("msg.error.ranking.empty", "§eLe classement est vide.");
 				config.set("int.level.limit", 100);
 				config.set("int.level.ratio", 25);
+				config.set("int.top.amount", 10);
 				config.save(fileConfig);
 				
-				fileClassement.createNewFile();
-				YamlConfiguration classement = YamlConfiguration.loadConfiguration(fileClassement);
+				fileRanking.createNewFile();
+				YamlConfiguration ranking = YamlConfiguration.loadConfiguration(fileRanking);
 				
-				classement.set("kills.c45a3af5-ae9b-3f40-8895-99b37479ead8", 0);
-				classement.save(fileClassement);
+				ranking.save(fileRanking);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -67,8 +68,8 @@ public class Main extends JavaPlugin {
 			return file;
 	}
 	
-	public File getClassementFileOf(String worldName) {
-		File file = new File(getDataFolder(), "Worlds/" + worldName + "/classement.yml");
+	public File getRankingFileOf(String worldName) {
+		File file = new File(getDataFolder(), "Worlds/" + worldName + "/ranking.yml");
 		if (!file.exists())
 			return null;
 		else
@@ -87,12 +88,12 @@ public class Main extends JavaPlugin {
 			return YamlConfiguration.loadConfiguration(file);
 	}
 	
-	public YamlConfiguration getClassementYamlOf(File file) {
+	public YamlConfiguration getRankingYamlOf(File file) {
 		return YamlConfiguration.loadConfiguration(file);
 	}
 	
-	public YamlConfiguration getClassementYamlOf(String worldName) {
-		File file = getClassementFileOf(worldName);
+	public YamlConfiguration getRankingYamlOf(String worldName) {
+		File file = getRankingFileOf(worldName);
 		if (file == null)
 			return null;
 		else

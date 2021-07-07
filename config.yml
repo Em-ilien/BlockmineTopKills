@@ -18,3 +18,10 @@
 
 
 # Em_i <emilien@emixocle.fr>
+
+
+
+msg:
+  error:
+    world:
+       noconfigured: "§cErreur : aucun classement n'a été configuré sur ce monde."
