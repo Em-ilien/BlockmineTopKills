@@ -16,6 +16,8 @@
 # Pour ajouter un compteur de kills dans un autre monde, vous pouvez dupliquer un répertoire contenu dans "Worlds" puis le configurer avec le sous-fichier config.yml.
 
 
+# You can read the GitHub README file. https://github.com/Em-ilien/BlockmineTopKills
+
 
 # Em_i <emilien@emixocle.fr>
 
@@ -25,3 +27,4 @@ msg:
   error:
     world:
        noconfigured: "§cErreur : aucun classement n'a été configuré sur ce monde."
+#No ranking was configured in this world.
