@@ -1,6 +1,7 @@
 package fr.em_i.blockmine.topkills.cmd;
 
 import java.util.Collections;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -60,8 +61,6 @@ public class Ranking implements CommandExecutor {
 		int rank = 0;
 		sender.sendMessage(config.getString("msg.ranking.title"));
 		
-		System.out.println(config.getString("msg.ranking.title"));
-		
 		for (Entry<String, Integer> entry : MapSorting.sortedValues(rankingMap, Collections.reverseOrder())) {
 			UUID uuid = UUID.fromString(entry.getKey());
 			int kills = entry.getValue();
@@ -72,7 +71,6 @@ public class Ranking implements CommandExecutor {
 			
 			int level = kills/25;
 			String username = Bukkit.getOfflinePlayer(uuid).getName();
-			System.out.println(config.getString("msg.ranking.line"));
 			sender.sendMessage(config.getString("msg.ranking.line").replace("%rank%", rank+"").replace("%username%", username).replace("%amount_kills%", kills+"").replace("%level%", level+""));
 		}
 

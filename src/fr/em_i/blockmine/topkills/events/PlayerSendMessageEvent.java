@@ -38,6 +38,7 @@ public class PlayerSendMessageEvent implements Listener {
 			level = ranking.getInt("kills." + uuidStr);
 		
 		level = level/config.getInt("int.level.ratio");
+		
 		if (level >= config.getInt("int.level.limit"))
 			level = config.getInt("int.level.limit");
 		
