@@ -1,25 +1,26 @@
 package fr.em_i.blockmine.topkills.tools;
 
-import java.io.File;
-
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import fr.em_i.blockmine.topkills.Main;
 
 public class ClassementTools {
 
-	public static int pseudo(Main main, int place) {
-		final File file = new File(main.getDataFolder(), "/classement.yml");
-		final YamlConfiguration configuration = YamlConfiguration.loadConfiguration(file);
+	public static int pseudo(Main main, int place, String worldName) {
+		final FileConfiguration configuration = main.getConfigOf(worldName);
+		
+		if (configuration == null)
+			return -1;
+		
 		OfflinePlayer[] list = Bukkit.getOfflinePlayers();
 
 		int[] montants = new int[list.length];
 
 		for (int i = 0; i < list.length; i++) {
-			if (list[i].getName() != "null" && configuration.contains("Kills." + list[i].getName())) {
-				montants[i] = configuration.getInt("Kills." + list[i].getName());
+			if (list[i].getName() != "null" && configuration.contains("kills." + list[i].getName())) {
+				montants[i] = configuration.getInt("kills." + list[i].getName());
 			} else {
 				montants[i] = 0;
 			}

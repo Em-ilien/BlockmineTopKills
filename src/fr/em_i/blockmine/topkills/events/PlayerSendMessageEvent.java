@@ -2,13 +2,12 @@ package fr.em_i.blockmine.topkills.events;
 
 import org.bukkit.event.Listener;
 
+
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.em_i.blockmine.topkills.Main;
 
-import java.io.File;
-
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -24,19 +23,24 @@ public class PlayerSendMessageEvent implements Listener {
 	@EventHandler (priority = EventPriority.HIGHEST)
 	private void onMessage(AsyncPlayerChatEvent event) {
 		final Player p = event.getPlayer();
+		final String worldName = p.getWorld().getName();
+		final String uuidStr = p.getUniqueId().toString();
 		
-		final File classementFile = new File(main.getDataFolder(), "/classement.yml");
-		final YamlConfiguration classement = YamlConfiguration.loadConfiguration(classementFile);
-
+		final FileConfiguration classement = main.getClassementYamlOf(worldName);
+		
+		if (classement == null)
+			return;
+		
+		final FileConfiguration config = main.getConfigOf(worldName);
+		
 		int level = 0;
-		if (classement.contains("Kills." + p.getUniqueId().toString())) 
-			level = classement.getInt("Kills." + p.getUniqueId().toString());
+		if (classement.contains("kills." + uuidStr)) 
+			level = classement.getInt("kills." + uuidStr);
 		
-		level = level/main.getConfig().getInt("int.level.ratio");
-		if (level >= main.getConfig().getInt("int.level.limit"))
-			level = main.getConfig().getInt("int.level.limit");
+		level = level/config.getInt("int.level.ratio");
+		if (level >= config.getInt("int.level.limit"))
+			level = config.getInt("int.level.limit");
 		
-		event.setFormat(main.getConfig().getString("msg.tchat.format").replace("%level%", level+"").replace("%rest%", event.getFormat()));
+		event.setFormat(config.getString("msg.tchat.format").replace("%level%", level+"").replace("%rest%", event.getFormat()));
 	}
-	
 }

@@ -1,11 +1,20 @@
-msg:
-  classement:
-    title: "§7§m        §6§lTOP 10 KILLS§7§m        "
-    line: "§a#%rank% §r§b%username% §7- §6%amount_kills% kills (Niv.%level%)" #Placeholders: %rank% ; %username% ; %amount_kills% ; %level%
-  tchat:
-    format: "[Niv.%level%] %rest%" #Placeholders: %level% ; %rest%
+########### ENGLISH:
 
-int:
-  level:
-    limit: 100
-    ratio: 25
+# The configuration system is by world. This means that for each world you want to count the kills, you need to add a single particular configuration.
+# To config a world, you need to go to in the directory "Worlds", then choose the world of your choice and then open the config.yml file.
+# The name of the folder corresponds to the world name.
+# So, if your world is entitled "world", do not rename the default folder name. But, if your world's name is "quake", please rename the folder to "quake".
+# To add a world kills counter, you can duplicate a world directory contained in "Worlds" and then configure it with config.yml subfile.
+
+
+########### FRANÇAIS :
+
+# Le système de configuration est par monde. Cela signifie que pour chaque monde dont vous souhaitez compter les kills, vous devez ajouter une seule configuration particulière.
+# Pour configurer un monde, vous devez vous rendre dans le répertoire "Worlds", puis choisir le monde de votre choix et enfin ouvrir le fichier config.yml.
+# Le nom du dossier correspond au nom du monde.
+# Donc, si votre monde s'intitule "world", ne renommez pas le nom du dossier par défaut. Mais, si le nom de votre monde est "quake", veuillez renommer le dossier en "quake".
+# Pour ajouter un compteur de kills dans un autre monde, vous pouvez dupliquer un répertoire contenu dans "Worlds" puis le configurer avec le sous-fichier config.yml.
+
+
+
+# Em_i <emilien@emixocle.fr>
