@@ -18,18 +18,30 @@ You can configure many counter you want by world in the same spigot server.
 ### Files
 
 Spigot server
- - plugins
-  - BlockmineTopKills
-   - Worlds
-    - world (by default)
-     - config.yml (configure here your world settings)
-     - ranking.yml (data saved - do not touch)
-    - world2 (you can duplicate - the folder name must be your world name)
-     - config.yml (not the same configuration than the first world)
-     - ranking.yml (data different than first world)
-    - ...
-   - config.yml (not too important)
-   - plugin.yml
+
+-- plugins
+
+---- BlockmineTopKills
+
+------ Worlds
+
+-------- world (by default)
+
+---------- config.yml (configure here your world settings)
+
+------------ ranking.yml (data saved - do not touch)
+
+-------- world2 (you can duplicate - the folder name must be your world name)
+
+---------- config.yml (not the same configuration than the first world)
+
+---------- ranking.yml (data different than first world)
+
+-------- ...
+
+------ config.yml (not too important)
+
+------ plugin.yml
 
 Please follow these following instructions.
 
