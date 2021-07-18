@@ -70,6 +70,9 @@ public class Ranking implements CommandExecutor {
 			}
 			
 			int level = kills/25;
+			if (level > config.getInt("int.level.limit"))
+				level = config.getInt("int.level.limit");
+			
 			String username = Bukkit.getOfflinePlayer(uuid).getName();
 			sender.sendMessage(config.getString("msg.ranking.line").replace("%rank%", rank+"").replace("%username%", username).replace("%amount_kills%", kills+"").replace("%level%", level+""));
 		}

@@ -40,6 +40,7 @@ public class Main extends JavaPlugin {
 				config.set("msg.ranking.title", "§7§m        §6§lTOP 10 KILLS§7§m        ");
 				config.set("msg.ranking.line", "§a#%rank% §r§b%username% §7- §6%amount_kills% kills (Niv.%level%)");
 				config.set("msg.tchat.format", "[Niv.%level%] %rest%");
+				config.set("msg.rankup.message", "§aVous atteignez le level %level% ! §lFélicitations !");
 				config.set("msg.error.ranking.empty", "§eLe classement est vide.");
 				config.set("int.level.limit", 100);
 				config.set("int.level.ratio", 25);
