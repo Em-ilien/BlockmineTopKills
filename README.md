@@ -7,7 +7,7 @@ CE README N'EST PAS DISPONIBLE EN FRANÇAIS.
 
 ## Features
 A ranking system for best killers players.
-You can configure many counter you want by world in the same spigot server.
+You can configure many counters you want by world in the same spigot server.
 
 ## Requirements
 * Java
