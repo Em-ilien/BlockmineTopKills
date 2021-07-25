@@ -11,6 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.em_i.blockmine.topkills.cmd.Level;
 import fr.em_i.blockmine.topkills.cmd.Ranking;
 import fr.em_i.blockmine.topkills.events.PlayerKillEvent;
 import fr.em_i.blockmine.topkills.events.PlayerSendMessageEvent;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new PlayerKillEvent(this), this);
 		getServer().getPluginManager().registerEvents(new PlayerSendMessageEvent(this), this);
 		getCommand("classement").setExecutor(new Ranking(this));
+		getCommand("level").setExecutor(new Level(this));
 
 		Path path = Paths.get(getDataFolder().getPath() + "/Worlds");
 		File fileConfig = new File(getDataFolder(), "Worlds/world/config.yml");
@@ -41,6 +43,7 @@ public class Main extends JavaPlugin {
 				config.set("msg.ranking.line", "§a#%rank% §r§b%username% §7- §6%amount_kills% kills (Niv.%level%)");
 				config.set("msg.tchat.format", "[Niv.%level%] %rest%");
 				config.set("msg.rankup.message", "§aVous atteignez le level %level% ! §lFélicitations !");
+				config.set("msg.print.level", "§aVotre level actuel : %level%");
 				config.set("msg.error.ranking.empty", "§eLe classement est vide.");
 				config.set("int.level.limit", 100);
 				config.set("int.level.ratio", 25);
